@@ -24,7 +24,7 @@ const Home = () => {
   return (
     <div>
       {/* Slider / Banner */}
-      <div className="h-64 bg-green-600 flex items-center justify-center text-white text-4xl font-bold mb-6">
+      <div className="h-64 bg-green-600 dark:bg-gray-700 flex items-center justify-center text-white text-4xl font-bold mb-6">
         Welcome to Recipe Book
       </div>
 

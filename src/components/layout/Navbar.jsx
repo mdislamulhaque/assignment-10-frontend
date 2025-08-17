@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { signOut } from "firebase/auth";
 import auth from "../../firebase/firebase.config";
 import { AuthContext } from "../../context/authProvider";
+import DarkToggle from "../DarkToggle";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
@@ -19,28 +20,45 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-600 text-white px-6 py-4 flex justify-between items-center relative">
+    <nav className="bg-green-600 dark:bg-gray-800 text-white px-6 py-4 flex justify-between items-center relative">
       <Link to="/" className="text-2xl font-bold">
         Recipe Book
       </Link>
 
       <div className="flex items-center gap-4">
-        <Link to="/">Home</Link>
-        <Link to="/all-recipes">All Recipes</Link>
-        <Link to="/add-recipe">Add Recipe</Link>
-        <Link to="/my-recipes">My Recipes</Link>
+        <Link to="/" className="hover:text-gray-200 dark:hover:text-gray-300">
+          Home
+        </Link>
+        <Link
+          to="/all-recipes"
+          className="hover:text-gray-200 dark:hover:text-gray-300"
+        >
+          All Recipes
+        </Link>
+        <Link
+          to="/add-recipe"
+          className="hover:text-gray-200 dark:hover:text-gray-300"
+        >
+          Add Recipe
+        </Link>
+        <Link
+          to="/my-recipes"
+          className="hover:text-gray-200 dark:hover:text-gray-300"
+        >
+          My Recipes
+        </Link>
 
         {!user ? (
           <>
             <Link
               to="/login"
-              className="bg-white text-green-600 px-3 py-1 rounded"
+              className="bg-white dark:bg-gray-900 text-green-600 dark:text-green-400 px-3 py-1 rounded"
             >
               Login
             </Link>
             <Link
               to="/register"
-              className="bg-white text-green-600 px-3 py-1 rounded"
+              className="bg-white dark:bg-gray-900 text-green-600 dark:text-green-400 px-3 py-1 rounded"
             >
               Register
             </Link>
@@ -59,11 +77,13 @@ const Navbar = () => {
             />
 
             {showDropdown && (
-              <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded shadow-lg z-10">
-                <p className="px-4 py-2 border-b">{user.displayName}</p>
+              <div className="absolute right-0 mt-2 w-44 bg-white dark:bg-gray-700 text-black dark:text-white rounded shadow-lg z-10">
+                <p className="px-4 py-2 border-b dark:border-gray-600">
+                  {user.displayName}
+                </p>
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600"
                 >
                   Logout
                 </button>
@@ -72,6 +92,9 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
+      {/* Dark Mode Toggle Button */}
+      <DarkToggle />
     </nav>
   );
 };
