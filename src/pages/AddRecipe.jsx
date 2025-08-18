@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/authProvider";
 
-
 const AddRecipe = () => {
   const { user } = useContext(AuthContext);
 
@@ -42,11 +41,14 @@ const AddRecipe = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/recipes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newRecipe),
-      });
+      const res = await fetch(
+        "https://recipe-book-server-seven-blush.vercel.app/recipes",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newRecipe),
+        }
+      );
       const data = await res.json();
       setMessage("Recipe added successfully!");
       // Clear form

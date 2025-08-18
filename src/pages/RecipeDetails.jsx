@@ -12,7 +12,9 @@ const RecipeDetails = () => {
 
   const fetchRecipe = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/recipes/${id}`);
+      const res = await fetch(
+        `https://recipe-book-server-seven-blush.vercel.app/recipes/${id}`
+      );
       const data = await res.json();
       setRecipe(data);
       setLikeCount(data.likeCount || 0);
@@ -37,11 +39,14 @@ const RecipeDetails = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/recipes/${id}/like`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userEmail: user.email }),
-      });
+      const res = await fetch(
+        `https://recipe-book-server-seven-blush.vercel.app/recipes/${id}/like`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userEmail: user.email }),
+        }
+      );
 
       if (res.ok) {
         const data = await res.json();

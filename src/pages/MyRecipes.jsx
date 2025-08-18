@@ -10,7 +10,7 @@ const MyRecipes = () => {
   const fetchMyRecipes = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/recipes?userEmail=${user.email}`
+        `https://recipe-book-server-seven-blush.vercel.app/recipes?userEmail=${user.email}`
       );
       const data = await res.json();
       setRecipes(data);
@@ -26,7 +26,10 @@ const MyRecipes = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure to delete this recipe?")) return;
     try {
-      await fetch(`http://localhost:5000/recipes/${id}`, { method: "DELETE" });
+      await fetch(
+        `https://recipe-book-server-seven-blush.vercel.app/recipes/${id}`,
+        { method: "DELETE" }
+      );
       setRecipes(recipes.filter((r) => r._id !== id));
     } catch (err) {
       console.error(err);

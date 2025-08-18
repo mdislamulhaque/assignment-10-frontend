@@ -8,7 +8,9 @@ const AllRecipes = () => {
 
   const fetchRecipes = async () => {
     try {
-      const res = await fetch("http://localhost:5000/recipes");
+      const res = await fetch(
+        "https://recipe-book-server-seven-blush.vercel.app/recipes"
+      );
       const data = await res.json();
       setRecipes(data);
     } catch (err) {

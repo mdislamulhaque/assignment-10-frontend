@@ -7,7 +7,9 @@ const Home = () => {
 
   const fetchTopRecipes = async () => {
     try {
-      const res = await fetch("http://localhost:5000/recipes");
+      const res = await fetch(
+        "https://recipe-book-server-seven-blush.vercel.app/recipes"
+      );
       const data = await res.json();
       // sort by likeCount descending & take top 6
       const top = data.sort((a, b) => b.likeCount - a.likeCount).slice(0, 6);
