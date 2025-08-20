@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SliderComponent from "../components/Slider";
+import RecipeSections from "../components/RecipeSections";
 
 const Home = () => {
   const [topRecipes, setTopRecipes] = useState([]);
@@ -26,31 +28,41 @@ const Home = () => {
   return (
     <div>
       {/* Slider / Banner */}
-      <div className="h-64 bg-green-600 dark:bg-gray-700 flex items-center justify-center text-white text-4xl font-bold mb-6">
-        Welcome to Recipe Book
+      <div className="flex items-center justify-center mb-6">
+        <SliderComponent />
       </div>
 
       {/* Top Recipes */}
       <div className="max-w-6xl mx-auto px-6">
         <h2 className="text-3xl font-bold mb-4">Top Recipes</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {topRecipes.map((recipe) => (
-            <div key={recipe._id} className="border rounded p-4 shadow">
-              <img
-                src={recipe.image || "https://via.placeholder.com/150"}
-                alt={recipe.title}
-                className="w-full h-40 object-cover rounded mb-2"
-              />
-              <h3 className="text-xl font-semibold">{recipe.title}</h3>
-              <p>
+            <div
+              key={recipe._id}
+              className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-4 shadow-md hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="overflow-hidden rounded-xl mb-4">
+                <img
+                  src={recipe.image || "https://via.placeholder.com/300"}
+                  alt={recipe.title}
+                  className="w-full h-40 object-cover rounded transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
+                {recipe.title}
+              </h3>
+
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-1">
                 <strong>Cuisine:</strong> {recipe.cuisine}
               </p>
-              <p>
-                <strong>Likes:</strong> {recipe.likeCount}
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                <strong>Likes:</strong> {recipe.likeCount || 0}
               </p>
+
               <button
                 onClick={() => navigate(`/recipe/${recipe._id}`)}
-                className="bg-blue-600 text-white px-3 py-1 rounded mt-2 hover:bg-blue-700"
+                className="w-full bg-emerald-700 text-white py-2 rounded-lg hover:bg-emerald-800 transition-colors duration-300"
               >
                 View Details
               </button>
@@ -69,21 +81,8 @@ const Home = () => {
       </div>
 
       {/* Extra Static Sections */}
-      <div className="max-w-6xl mx-auto px-6 mt-12 grid md:grid-cols-2 gap-6">
-        <div className="p-6 bg-yellow-100 rounded shadow">
-          <h3 className="text-2xl font-bold mb-2">Cooking Tips</h3>
-          <p>
-            Learn new cooking techniques and tips from top chefs around the
-            world.
-          </p>
-        </div>
-        <div className="p-6 bg-yellow-100 rounded shadow">
-          <h3 className="text-2xl font-bold mb-2">Healthy Eating</h3>
-          <p>
-            Discover healthy recipes to maintain a balanced diet without
-            compromising taste.
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto px-6 mt-12 gap-6">
+        <RecipeSections />
       </div>
     </div>
   );

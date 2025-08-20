@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-green-600 dark:bg-gray-800 text-white px-6 py-4 flex justify-between items-center relative">
+    <nav className="bg-emerald-700 dark:bg-gray-700 text-white px-6 py-4 flex justify-between items-center relative">
       <Link to="/" className="text-2xl font-bold">
         Recipe Book
       </Link>
